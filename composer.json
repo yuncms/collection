@@ -1,0 +1,44 @@
+{
+  "name": "yuncms/collection",
+  "description": "The collection module for yuncms.",
+  "keywords": [
+    "collection",
+    "yii2",
+    "yii2-module"
+  ],
+  "type": "yii2-extension",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Xu TL",
+      "email": "xutongle@gmail.com"
+    }
+  ],
+  "require": {
+    "yuncms/framework": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "yuncms\\collection\\": "src"
+    }
+  },
+  "extra": {
+    "yuncms": {
+      "id": "collection",
+      "migrationPath": "@vendor/yuncms/collection/migrations"
+    },
+    "branch-alias": {
+      "dev-master": "1.0.0-dev"
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    },
+    {
+      "type": "composer",
+      "url": "https://packagist.phpcomposer.com"
+    }
+  ]
+}
