@@ -15,7 +15,7 @@
     }
   ],
   "require": {
-    "yuncms/framework": "*"
+    "yuncms/framework": "~1.0.0"
   },
   "autoload": {
     "psr-4": {
@@ -23,10 +23,7 @@
     }
   },
   "extra": {
-    "yuncms": {
-      "id": "collection",
-      "migrationPath": "@vendor/yuncms/collection/migrations"
-    },
+    "yuncms": "config.php",
     "branch-alias": {
       "dev-master": "1.0.0-dev"
     }
