@@ -9,7 +9,7 @@ return [
     'id' => 'collection',
     'migrationPath' => '@vendor/yuncms/collection/migrations',
     'translations' => [
-        'yuncms' => [
+        'yuncms/collection' => [
             'class' => yii\i18n\PhpMessageSource::class,
             'basePath' => '@vendor/yuncms/collection/messages',
             'sourceLanguage' => 'en-US',
