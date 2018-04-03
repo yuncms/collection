@@ -1,12 +1,20 @@
 <?php
 
-namespace yuncms\collection\migrations;
+use yuncms\db\Migration;
 
-use yii\db\Migration;
-
-class M171114060438Create_collection_table extends Migration
+/**
+ * Handles the creation of table `collection`.
+ */
+class m180403_060007_create_collection_table extends Migration
 {
+    /**
+     * @var string The table name.
+     */
+    public $tableName = '{{%collection}}';
 
+    /**
+     * {@inheritdoc}
+     */
     public function safeUp()
     {
         $tableOptions = null;
@@ -18,7 +26,7 @@ class M171114060438Create_collection_table extends Migration
         /**
          * 用户收藏表
          */
-        $this->createTable('{{%collections}}', [
+        $this->createTable($this->tableName, [
             'id' => $this->primaryKey()->unsigned()->comment('ID'),
             'user_id' => $this->integer()->unsigned()->notNull()->comment('User Id'),
             'model_id' => $this->bigInteger()->notNull()->comment('Model Id'),
@@ -28,29 +36,16 @@ class M171114060438Create_collection_table extends Migration
             'updated_at' => $this->integer()->unsigned()->notNull()->comment('Updated At'),
         ], $tableOptions);
 
-        $this->createIndex('collections_index', '{{%collections}}', ['user_id', 'model_id', 'model_class'], true);
-        $this->addForeignKey('{{%collections_fk_1}}', '{{%collections}}', 'user_id', '{{%user}}', 'id', 'CASCADE', 'RESTRICT');
+        $this->createIndex('collections_index', $this->tableName, ['user_id', 'model_id', 'model_class'], true);
+        $this->addForeignKey('collections_fk_1', $this->tableName, 'user_id', '{{%user}}', 'id', 'CASCADE', 'RESTRICT');
 
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function safeDown()
     {
-        $this->dropTable('{{%collections}}');
+        $this->dropTable($this->tableName);
     }
-
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "M171114060438Create_collection_table cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }
