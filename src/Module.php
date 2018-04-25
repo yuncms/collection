@@ -6,9 +6,6 @@
  */
 namespace yuncms\collection;
 
-use Yii;
-use yii\base\InvalidConfigException;
-
 /**
  * Class Module
  *

@@ -17,7 +17,7 @@ use yuncms\notifications\NotificationTrait;
 use yuncms\user\models\User;
 
 /**
- * This is the model class for table "collections".
+ * Class UserCollection
  *
  * @property integer $user_id
  * @property integer $model_id
@@ -28,6 +28,9 @@ use yuncms\user\models\User;
  * @property ActiveRecord $source
  *
  * @property User $user
+ *
+ * @author Tongle Xu <xutongle@gmail.com>
+ * @since 3.0
  */
 class Collection extends ActiveRecord implements NotificationInterface
 {
@@ -51,7 +54,7 @@ class Collection extends ActiveRecord implements NotificationInterface
     public static function isCollected($model, $modelId, $user_id = null)
     {
         return static::find()->where([
-            'user_id' => $user_id ? $user_id : Yii::$app->user->getId(),
+            'user_id' => $user_id ? $user_id : Yii::$app->user->id,
             'model_class' => $model,
             'model_id' => $modelId
         ])->exists();

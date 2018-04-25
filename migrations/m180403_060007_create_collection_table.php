@@ -3,14 +3,14 @@
 use yuncms\db\Migration;
 
 /**
- * Handles the creation of table `collection`.
+ * Handles the creation of table `user_collection`.
  */
 class m180403_060007_create_collection_table extends Migration
 {
     /**
      * @var string The table name.
      */
-    public $tableName = '{{%collection}}';
+    public $tableName = '{{%collections}}';
 
     /**
      * {@inheritdoc}

@@ -10,8 +10,10 @@ namespace yuncms\collection\models;
 use yii\db\ActiveQuery;
 
 /**
- * Class CollectionQuery
- * @package yuncms\collection\models
+ * Class UserCollectionQuery
+ *
+ * @author Tongle Xu <xutongle@gmail.com>
+ * @since 3.0
  */
 class CollectionQuery extends ActiveQuery
 {
