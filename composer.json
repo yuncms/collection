@@ -23,9 +23,9 @@
     }
   },
   "extra": {
-    "yuncms": "config.php",
+    "yuncms": "mainfest.php",
     "branch-alias": {
-      "dev-master": "1.0.0-dev"
+      "dev-master": "2.0.0-dev"
     }
   },
   "repositories": [
