@@ -27,13 +27,13 @@ class m180403_060007_create_collection_table extends Migration
          * 用户收藏表
          */
         $this->createTable($this->tableName, [
-            'id' => $this->primaryKey()->unsigned()->comment('ID'),
-            'user_id' => $this->integer()->unsigned()->notNull()->comment('User Id'),
+            'id' => $this->primaryKey()->comment('ID'),
+            'user_id' => $this->unsignedInteger()->notNull()->comment('User Id'),
             'model_id' => $this->bigInteger()->notNull()->comment('Model Id'),
             'model_class' => $this->string()->notNull()->comment('Model Class'),
             'subject' => $this->string()->comment('Subject'),
-            'created_at' => $this->integer()->unsigned()->notNull()->comment('Created At'),
-            'updated_at' => $this->integer()->unsigned()->notNull()->comment('Updated At'),
+            'created_at' => $this->unixTimestamp()->notNull()->comment('Created At'),
+            'updated_at' => $this->unixTimestamp()->notNull()->comment('Updated At'),
         ], $tableOptions);
 
         $this->createIndex('collections_index', $this->tableName, ['user_id', 'model_id', 'model_class'], true);
