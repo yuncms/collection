@@ -15,7 +15,7 @@
     }
   ],
   "require": {
-    "yuncms/framework": "~1.0.0"
+    "yuncms/framework": "~2.0.0"
   },
   "autoload": {
     "psr-4": {
