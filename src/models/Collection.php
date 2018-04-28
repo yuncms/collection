@@ -11,9 +11,8 @@ use Yii;
 use yii\base\InvalidConfigException;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
+use yuncms\collection\notifications\CollectionNotification;
 use yuncms\db\ActiveRecord;
-use yuncms\notifications\contracts\NotificationInterface;
-use yuncms\notifications\NotificationTrait;
 use yuncms\user\models\User;
 
 /**
@@ -32,10 +31,8 @@ use yuncms\user\models\User;
  * @author Tongle Xu <xutongle@gmail.com>
  * @since 3.0
  */
-class Collection extends ActiveRecord implements NotificationInterface
+class Collection extends ActiveRecord
 {
-    use NotificationTrait;
-
     /**
      * @inheritdoc
      */
@@ -103,6 +100,15 @@ class Collection extends ActiveRecord implements NotificationInterface
     }
 
     /**
+     * 获取源标题
+     * @return string
+     */
+    public function getSourceTitle()
+    {
+        return null;
+    }
+
+    /**
      * @param bool $insert
      * @param array $changedAttributes
      */
@@ -111,7 +117,13 @@ class Collection extends ActiveRecord implements NotificationInterface
         if ($insert) {
             $this->source->updateCountersAsync(['collections' => 1]);
             try {
-                Yii::$app->notification->send($this->source->user, $this);
+                Yii::$app->notification->send($this->source->user, new CollectionNotification([
+                    'data' => [
+                        'username' => $this->user->nickname,
+                        'entity' => $this->getSourceTitle(),
+                        'source' => $this->source->toArray()
+                    ]
+                ]));
             } catch (InvalidConfigException $e) {
             }
         }
