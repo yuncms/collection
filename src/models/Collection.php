@@ -123,6 +123,7 @@ class Collection extends ActiveRecord
                         'entity' => $this->toArray(),
                         'source' => $this->source->toArray(),
                         'source_title' => $this->getSourceTitle(),
+                        'source_json'=>$this->source->toJson(),
                         'source_id' => $this->model_id,
                         'source_class' => $this->model_class
                     ]
