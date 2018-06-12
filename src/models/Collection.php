@@ -120,8 +120,11 @@ class Collection extends ActiveRecord
                 Yii::$app->notification->send($this->source->user, new CollectionNotification([
                     'data' => [
                         'username' => $this->user->nickname,
-                        'entity' => $this->getSourceTitle(),
-                        'source' => $this->source->toArray()
+                        'entity' => $this->toArray(),
+                        'source' => $this->source->toArray(),
+                        'source_title' => $this->getSourceTitle(),
+                        'source_id' => $this->model_id,
+                        'source_class' => $this->model_class
                     ]
                 ]));
             } catch (InvalidConfigException $e) {

@@ -45,7 +45,7 @@ class CollectionNotification extends Notification
      */
     public function getTemplate()
     {
-        return Yii::t('yuncms/collection', '{username} collection your {entity}');
+        return Yii::t('yuncms/collection', '{username} collection your {source_title}');
     }
 
 
