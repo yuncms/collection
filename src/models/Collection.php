@@ -116,22 +116,30 @@ class Collection extends ActiveRecord
     {
         if ($insert) {
             $this->source->updateCountersAsync(['collections' => 1]);
-            try {
-                Yii::$app->notification->send($this->source->user, new CollectionNotification([
-                    'data' => [
-                        'username' => $this->user->nickname,
-                        'entity' => $this->toArray(),
-                        'source' => $this->source->toArray(),
-                        'source_title' => $this->getSourceTitle(),
-                        'source_json'=>$this->source->toJson(),
-                        'source_id' => $this->model_id,
-                        'source_class' => $this->model_class
-                    ]
-                ]));
-            } catch (InvalidConfigException $e) {
-            }
+            $this->sendNotice();
         }
         parent::afterSave($insert, $changedAttributes);
+    }
+
+    /**
+     * 发送通知
+     */
+    public function sendNotice()
+    {
+        try {
+            Yii::$app->notification->send($this->source->user, new CollectionNotification([
+                'data' => [
+                    'username' => $this->user->nickname,
+                    'entity' => $this->toArray(),
+                    'source' => $this->source->toArray(),
+                    'source_title' => $this->getSourceTitle(),
+                    'source_id' => $this->model_id,
+                    'source_class' => $this->model_class
+                ]
+            ]));
+        } catch (InvalidConfigException $e) {
+            Yii::error($e->getMessage(), __METHOD__);
+        }
     }
 
     /**
